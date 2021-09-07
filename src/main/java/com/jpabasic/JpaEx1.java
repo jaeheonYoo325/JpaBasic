@@ -7,10 +7,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-public class JpaMain {
+public class JpaEx1 {
 
 	public static void main(String[] args) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
+EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
 		
 		EntityManager em = emf.createEntityManager();
 		
@@ -18,28 +18,20 @@ public class JpaMain {
 		tx.begin();
 		
 		try {
-			
-			//1.등록
+			//비영속
 			Member member = new Member();
-			member.setId(2L);
-			member.setName("HelloB");
+			member.setId(100L);
+			member.setName("HelloJPA");
 			
+			//영속
+			System.out.println("=== BEFORE ===");
 			em.persist(member);
+			//영속성 컨텍스트에서 분리, 준영속 상태
+			//em.detach(member);
 			
-			//2.단건조회
-			Member findMember = em.find(Member.class, 1L);
-			
-			//3.수정
-			findMember.setName("HelloJPA");
-			
-			//4.전체조회 - JPQL 
-			List<Member> result = em.createQuery("select m from Member as m", Member.class)
-					.getResultList();
-			
-			
-			for( Member members : result ) {
-				System.out.println("members.name = " + members.getName()); 
-			}
+			//객체를 삭제한 상태(삭제)
+			//em.remove(member);
+			System.out.println("=== AFTER ===");
 			
 			tx.commit();
 		} catch (Exception e) {
