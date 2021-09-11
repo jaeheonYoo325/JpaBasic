@@ -5,7 +5,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-public class JpaEx7 {
+public class JpaEx8 {
+
 	public static void main(String[] args) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
 		
@@ -17,11 +18,12 @@ public class JpaEx7 {
 		try {
 			
 			Member member = new Member();
-//			member.setId("ID_A");
 			member.setUsername("C");
-			//member.setRoleType(RoleType.GUEST);
 			
+			System.out.println("==========");
 			em.persist(member);
+			System.out.println("member.id = " + member.getId());
+			System.out.println("==========");
 			
 			tx.commit();
 		} catch (Exception e) {
@@ -32,4 +34,5 @@ public class JpaEx7 {
 		
 		emf.close();
 	}
+
 }
