@@ -19,7 +19,7 @@ public class JpaEx6 {
 			
 			//영속
 			Member member = em.find(Member.class, 150L);
-			member.setName("AAAAA");
+			member.setUsername("AAAAA");
 
 			//준영속 상태
 			//em.detach(member);

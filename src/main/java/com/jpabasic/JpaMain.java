@@ -22,7 +22,7 @@ public class JpaMain {
 			//1.등록
 			Member member = new Member();
 			member.setId(2L);
-			member.setName("HelloB");
+			member.setUsername("HelloB");
 			
 			em.persist(member);
 			
@@ -30,7 +30,7 @@ public class JpaMain {
 			Member findMember = em.find(Member.class, 1L);
 			
 			//3.수정
-			findMember.setName("HelloJPA");
+			findMember.setUsername("HelloJPA");
 			
 			//4.전체조회 - JPQL 
 			List<Member> result = em.createQuery("select m from Member as m", Member.class)
@@ -38,7 +38,7 @@ public class JpaMain {
 			
 			
 			for( Member members : result ) {
-				System.out.println("members.name = " + members.getName()); 
+				System.out.println("members.name = " + members.getUsername()); 
 			}
 			
 			tx.commit();
