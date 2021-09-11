@@ -17,18 +17,11 @@ public class JpaEx5 {
 		
 		try {
 			
-			//영속
-			Member member = em.find(Member.class, 150L);
-			member.setName("AAAAA");
+			Member member = new Member(200L, "member200");
+			em.persist(member);
+			
+			em.flush();
 
-			//준영속 상태
-			//em.detach(member);
-			
-			//영속성 컨텍스트 완전히 초기화
-			em.clear();
-			
-			Member member2 = em.find(Member.class, 150L);
-			
 			System.out.println("=================");
 			
 			tx.commit();
@@ -39,7 +32,6 @@ public class JpaEx5 {
 		}
 		
 		emf.close();
-
 	}
 
 }
